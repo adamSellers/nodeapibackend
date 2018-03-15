@@ -9,15 +9,8 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connection = {
-    host: process.env.DBHOST,
-    port: process.env.PORT,
-    database: process.env.DB,
-    user: process.env.DBUSER,
-    password: process.env.DBPASS,
-    ssl: true
-}
-var db = pgp(connection);
+var connString = process.env.DATABASE_URL;
+var db = pgp(connString);
 
 //api queries: get all contacts
 function getAllContacts(req, res, next) {
